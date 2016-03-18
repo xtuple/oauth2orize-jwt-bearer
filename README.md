@@ -28,30 +28,32 @@ signing data: echo -n "data-to-sign" | openssl dgst -RSA-SHA256 -sign private.pe
 convert the signed file (binary) into base64 to be sent.
 base64 signed
 
-    var jwtBearer = require('oauth2orize-jwt-bearer').Exchange;
+```javascript
+var jwtBearer = require('oauth2orize-jwt-bearer').Exchange;
 
-    server.exchange('urn:ietf:params:oauth:grant-type:jwt-bearer', jwtBearer(function(client, data, signature, done) {
-     var crypto = require('crypto')
-	   , fs = require('fs') //load file system so you can grab the public key to read.
-       , pub = fs.readFileSync('/path/to/public.pem').toString() //load PEM format public key as string, should be clients public key
-       , verifier = crypto.createVerify("RSA-SHA256");
+server.exchange('urn:ietf:params:oauth:grant-type:jwt-bearer', jwtBearer(function(client, data, signature, done) {
+ var crypto = require('crypto')
+   , fs = require('fs') //load file system so you can grab the public key to read.
+   , pub = fs.readFileSync('/path/to/public.pem').toString() //load PEM format public key as string, should be clients public key
+   , verifier = crypto.createVerify("RSA-SHA256");
 
-	 //verifier.update takes in a string of the data that is encrypted in the signature  
-     verifier.update(JSON.stringify(data));
-    
-     if (verifier.verify(pub, signature, 'base64')) {
-	   //base64url decode data 
-	   var b64string = data;
-	   var buf = new Buffer(b64string, 'base64').toString('ascii');
-	   
-       // TODO - verify client_id, scope and expiration are valid from the buf variable above
+ //verifier.update takes in a string of the data that is encrypted in the signature  
+ verifier.update(JSON.stringify(data));
 
-       AccessToken.create(client, scope, function(err, accessToken) {
-         if (err) { return done(err); }
-         done(null, accessToken);
-       });
-     }
-    }));
+ if (verifier.verify(pub, signature, 'base64')) {
+   //base64url decode data 
+   var b64string = data;
+   var buf = new Buffer(b64string, 'base64').toString('ascii');
+ 
+   // TODO - verify client_id, scope and expiration are valid from the buf variable above
+
+   AccessToken.create(client, scope, function(err, accessToken) {
+     if (err) { return done(err); }
+     done(null, accessToken);
+   });
+ }
+}));
+```
 
 ## Tests
 
