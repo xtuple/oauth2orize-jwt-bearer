@@ -1,6 +1,6 @@
 {
   "name": "oauth2orize-jwt-bearer",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "JSON Web Token (JWT) Bearer Token Exchange Middleware for OAuth2orize.",
   "keywords": ["oauth2orize", "oauth", "oauth2", "authn", "authentication", "authz", "authorization", "api", "jwt", "json", "token", "bearer"],
   "repository": {
