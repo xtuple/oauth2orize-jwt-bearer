@@ -2,7 +2,20 @@
   "name": "oauth2orize-jwt-bearer",
   "version": "0.2.0",
   "description": "JSON Web Token (JWT) Bearer Token Exchange Middleware for OAuth2orize.",
-  "keywords": ["oauth2orize", "oauth", "oauth2", "authn", "authentication", "authz", "authorization", "api", "jwt", "json", "token", "bearer"],
+  "keywords": [
+    "oauth2orize",
+    "oauth",
+    "oauth2",
+    "authn",
+    "authentication",
+    "authz",
+    "authorization",
+    "api",
+    "jwt",
+    "json",
+    "token",
+    "bearer"
+  ],
   "repository": {
     "type": "git",
     "url": "git://github.com/xtuple/oauth2orize-jwt-bearer.git"
@@ -15,14 +28,16 @@
     "email": "ben@xtuple.com",
     "url": "http://www.xtuple.com/"
   },
-  "licenses": [ {
-    "type": "MIT",
-    "url": "http://www.opensource.org/licenses/MIT"
-  } ],
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://www.opensource.org/licenses/MIT"
+    }
+  ],
   "main": "./lib/oauth2orize-jwt-bearer",
   "dependencies": {
-    "pkginfo": "0.2.x",
-    "oauth2orize": "~0.1.0"
+    "oauth2orize": "^1.12.0",
+    "pkginfo": "0.2.x"
   },
   "devDependencies": {
     "vows": "0.6.x"
@@ -30,5 +45,7 @@
   "scripts": {
     "test": "NODE_PATH=lib node_modules/.bin/vows test/*-test.js"
   },
-  "engines": { "node": ">= 0.4.0" }
+  "engines": {
+    "node": ">= 0.4.0"
+  }
 }
